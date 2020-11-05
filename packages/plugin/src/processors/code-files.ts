@@ -7,7 +7,7 @@ const RELEVANT_KEYWORDS = ['gql', 'graphql', '/* GraphQL */'];
 
 type Block = {
   text: string;
-  filename: string;
+  filename?: string;
   lineOffset?: number;
 };
 
@@ -44,13 +44,13 @@ export function createGraphqlProcessor() {
             });
           }
 
-          blocks.push({ text, filename });
+          blocks.push({ text });
 
           return blocks;
         }
       }
 
-      return [{ text, filename }];
+      return [{ text }];
     },
     postprocess: (messageLists: any[], filename: string): any[] => {
       const blocks = blocksMap.get(filename);
